@@ -1,6 +1,6 @@
 use Library
-DROP TABLE IF EXISTS Books;
-DROP TABLE IF EXISTS Authors;
+DROP TABLE Books;
+DROP TABLE Authors;
 
 create table Books(
 BookID int primary key,
@@ -41,23 +41,30 @@ insert into Authors (AuthorID, FirstName, LastName, BirthYear) values
 (2005, 'Mahmoud', 'Darwish', 1941);
 
 
-select * from Books;
-select * from Authors;
+--select * from Books;
+--select * from Authors;
+
 
 --Display All Books and Authors
-select Title, FirstName, LastName from Books, Authors;
+--select Title, FirstName, LastName from Books, Authors;
+select 
+Authors.AuthorID,
+Title, 
+FirstName,
+LastName from Authors join Books on Books.AuthorID= Authors.AuthorID;
 
 --Book Availability
-
+select CopiesAvailable from Books where CopiesAvailable = (select MAX (CopiesAvailable) from Books);
+select CopiesAvailable from Books where CopiesAvailable = (select min (CopiesAvailable) from Books);
 
 --Average Publication Year
-
+select AVG (YEAR (PublishedYear) )from Books;
 
 --Total Books Count
-
+select SUM (CopiesAvailable )from Books;
 
 --Empty Books Table
-
+truncate table Books;
 
 -- Delete Authors Table
---DROP TABLE IF EXISTS Authors;
+DROP TABLE Authors;
