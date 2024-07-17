@@ -46,7 +46,9 @@ insert into Authors (AuthorID, FirstName, LastName, BirthYear) values
 
 
 --Display All Books and Authors
---select Title, FirstName, LastName from Books, Authors;
+select Title from Books;
+select FirstName from Authors;
+
 select 
 Authors.AuthorID,
 Title, 
